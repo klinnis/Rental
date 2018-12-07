@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
    subscription: Subscription;
     auth: any;
     isAdmin: any;
+    admin: any;
 
   constructor(private authservice: AuthService) { }
 
@@ -20,13 +21,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.authservice.authenticated.subscribe(res => {this.auth = res });
-    this.authservice.admin.subscribe(res1 => this.isAdmin = res1);
+    this.authservice.admin.subscribe(res1 => {
+        this.isAdmin = res1;
+        localStorage.setItem('admin', this.isAdmin);
+    });
+      this.admin = localStorage.getItem('admin');
+      console.log(this.admin);
+
   }
 
   onLogout() {
     this.authservice.authenticated.next(false);
-      this.authservice.changeAdmin(0);
+      this.authservice.changeAdmin(false);
     localStorage.removeItem('token');
+      localStorage.removeItem('admin');
     localStorage.removeItem('expiration');
   }
 

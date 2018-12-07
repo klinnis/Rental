@@ -99,6 +99,7 @@ ngOnInit() {
     clearAuthData() {
         localStorage.removeItem('token');
         localStorage.removeItem('expiration');
+        localStorage.removeItem('admin');
     }
 
 
@@ -108,6 +109,7 @@ ngOnInit() {
         clearTimeout(this.tokenTimer);
         this.clearAuthData();
         this.authservice.changeAdmin(0);
+        localStorage.removeItem('admin');
         this.router.navigate(['/login']);
     }
 
