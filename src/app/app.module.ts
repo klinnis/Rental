@@ -20,6 +20,9 @@ import {AuthService} from './auth/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './auth/auth.guard';
+import { CreateCarComponent } from './create-car/create-car.component';
+import {AdminService} from './auth/admin/admin.service';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 
 @NgModule({
@@ -29,6 +32,8 @@ import {AuthGuard} from './auth/auth.guard';
     LoginComponent,
     SignupComponent,
     HomeComponent,
+    CreateCarComponent,
+    AdminUsersComponent,
   ],
   imports: [
       BrowserModule,
@@ -51,9 +56,10 @@ import {AuthGuard} from './auth/auth.guard';
         {path: 'login', component: LoginComponent},
         {path: 'register', component: SignupComponent},
         {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+          {path: 'create-car', component: CreateCarComponent}
     ]),
   ],
-  providers: [AuthService, AuthGuard, LoginComponent],
+  providers: [AuthService, AuthGuard, LoginComponent, AdminService],
   bootstrap: [AppComponent]
 })
 

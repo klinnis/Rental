@@ -23,7 +23,7 @@
                    placeholder="Enter your password">
             <mat-error *ngIf="passwordInput.invalid">Password is required</mat-error>
         </mat-form-field>
-        <mat-error *ngIf="entered===false">Email or Password is incorrect!</mat-error>
+        <mat-error *ngIf="token === ''">Email or Password is incorrect!</mat-error>
 
        <button mat-raised-button color="primary" type="submit">Login</button>
 

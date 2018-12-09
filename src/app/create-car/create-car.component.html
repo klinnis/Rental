@@ -1,0 +1,72 @@
+
+  <div class="container">
+    <mat-card>
+      <mat-card-title>Insert new Car</mat-card-title>
+      <mat-card-content>
+      <form (submit)="onCreate(createForm)" #createForm="ngForm">
+
+        <mat-form-field>
+          <input matInput
+                 type="text"
+                 name="brand"
+                 ngModel
+                 required
+                 #brandInput="ngModel"
+                 placeholder="Enter the Brand">
+          <mat-error *ngIf="brandInput.invalid">Please enter a Brand</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 name="model"
+                 ngModel
+                 required
+                 type="text"
+                 #modelInput="ngModel"
+                 placeholder="Enter car's model">
+          <mat-error *ngIf="modelInput.invalid">Please enter a Model</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 name="power"
+                 ngModel
+                 required
+                 type="text"
+                 #powerInput="ngModel"
+                 placeholder="Enter power of Car">
+          <mat-error *ngIf="powerInput.invalid">Please enter the power</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                 name="seats"
+                 ngModel
+                 required
+                 type="number"
+                 #seatsInput="ngModel"
+                 placeholder="Enter car's seats">
+          <mat-error *ngIf="seatsInput.invalid">Please enter the seats</mat-error>
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" type="submit">Create</button>
+
+      </form>
+
+
+
+      </mat-card-content>
+
+    </mat-card>
+
+
+  </div>
+
+
+
+
+
+
+
+

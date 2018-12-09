@@ -17,9 +17,11 @@ mongoose.connect(uri,  { useNewUrlParser: true }).then(() => {console.log('Conne
 
 
 const userRoutes = require('./user');
+const adminRoutes = require('./admin');
 
 
 
 app.use('/api/user', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 module.exports = app;
