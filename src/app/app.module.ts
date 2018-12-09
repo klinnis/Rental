@@ -7,9 +7,9 @@ import {
     MatButtonModule,
     MatCardModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
-    MatListModule,
+    MatListModule, MatPaginatorModule,
     MatRadioModule,
-    MatSidenavModule,
+    MatSidenavModule, MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -22,7 +22,8 @@ import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './auth/auth.guard';
 import { CreateCarComponent } from './create-car/create-car.component';
 import {AdminService} from './auth/admin/admin.service';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.component';
+
 
 
 @NgModule({
@@ -45,6 +46,8 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
       MatToolbarModule,
       MatIconModule,
       MatListModule,
+      MatTableModule,
+      MatPaginatorModule,
       MatToolbarModule,
       MatSidenavModule,
       MatButtonModule,
@@ -56,7 +59,8 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
         {path: 'login', component: LoginComponent},
         {path: 'register', component: SignupComponent},
         {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-          {path: 'create-car', component: CreateCarComponent}
+          {path: 'create-car', component: CreateCarComponent},
+          {path: 'admin-users', component: AdminUsersComponent},
     ]),
   ],
   providers: [AuthService, AuthGuard, LoginComponent, AdminService],
