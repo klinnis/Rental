@@ -6,7 +6,7 @@ const router = express.Router();
 const User = require('./models/user');
 
 router.get('/users', (req,res,next) => {
-    User.find().then(user => {
+    User.find({}, 'email isAdmin').then(user => {
         if(!user) {
             res.status(404).json({message: 'No users Found'})
         }
