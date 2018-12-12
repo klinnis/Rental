@@ -39,6 +39,10 @@
             <mat-icon>account_box</mat-icon>
             My users
           </a>
+          <a (click)="sidenav.toggle()" routerLink="/cars" mat-list-item>
+            <mat-icon>account_box</mat-icon>
+           Main Page
+          </a>
         </ng-container>
 
         <ng-container *ngIf="admin === 0">

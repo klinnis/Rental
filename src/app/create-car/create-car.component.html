@@ -47,7 +47,14 @@
                  #seatsInput="ngModel"
                  placeholder="Enter car's seats">
           <mat-error *ngIf="seatsInput.invalid">Please enter the seats</mat-error>
-        </mat-form-field>
+        </mat-form-field><br><br>
+
+
+  <input #fileInput style="display:none" type="file" (change)="onFileSelected($event)">
+  <button matInput class="btn btn-outline-success" type="button" (click)="fileInput.click()">Choose Image</button><br><br>
+
+
+      
 
 
         <button mat-raised-button color="primary" type="submit">Create</button>

@@ -1,15 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTable, MatTableDataSource} from '@angular/material';
 import {AdminService} from '../admin.service';
+import {Observable} from 'rxjs';
+import {DataSource} from '@angular/cdk/collections';
+import {ChangeDetectionPerfRecord} from '@angular/platform-browser/src/browser/tools/common_tools';
 
-export interface PeriodicElement {
+export interface User {
     email: string;
     isAdmin: number;
-
 }
-
-
-
 
 @Component({
     templateUrl: './admin-users.component.html',
@@ -17,28 +16,43 @@ export interface PeriodicElement {
 })
 export class AdminUsersComponent implements OnInit {
 
-    ELEMENT_DATA: PeriodicElement[] = [
-        {isAdmin: 1, email: 'Hydrogen'},
-        {isAdmin: 2, email: 'Helium'},
+    displayedColumns = ['email', 'isAdmin', 'edit'];
+    dataSource = new UserDataSource(this.adminservice);
 
-    ];
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('table') table: MatTable<any>;
+
 
     constructor(private adminservice: AdminService) {}
 
-    displayedColumns: string[] = ['email', 'isAdmin', 'edit'];
-    dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
-
-
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
-
     ngOnInit() {
-        this.dataSource.paginator = this.paginator;
-        this.adminservice.getUsers().subscribe(res => console.log(res));
+
+
     }
 
-    getting(element: any) {
-        console.log(element.name);
+    onDelete(element: any) {
+      this.adminservice.deleteUser(element._id).subscribe(res =>
+          this.dataSource = new UserDataSource(this.adminservice));
+
     }
+
+    onAdmin(element: any) {
+        this.adminservice.makeAdmin(element._id).subscribe(res =>
+            this.dataSource = new UserDataSource(this.adminservice));
+    }
+
+
 
 }
+
+export class UserDataSource extends DataSource<any> {
+    constructor(private adminservice: AdminService) {
+        super();
+    }
+    connect(): Observable<any> {
+        return this.adminservice.getUsers();
+    }
+    disconnect() {}
+}
+
+

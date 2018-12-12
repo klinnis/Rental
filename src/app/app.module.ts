@@ -23,6 +23,8 @@ import {AuthGuard} from './auth/auth.guard';
 import { CreateCarComponent } from './create-car/create-car.component';
 import {AdminService} from './auth/admin/admin.service';
 import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.component';
+import { CarsComponent } from './cars/cars.component';
+
 
 
 
@@ -35,6 +37,7 @@ import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.componen
     HomeComponent,
     CreateCarComponent,
     AdminUsersComponent,
+    CarsComponent,
   ],
   imports: [
       BrowserModule,
@@ -59,8 +62,9 @@ import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.componen
         {path: 'login', component: LoginComponent},
         {path: 'register', component: SignupComponent},
         {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-          {path: 'create-car', component: CreateCarComponent},
-          {path: 'admin-users', component: AdminUsersComponent},
+        {path: 'create-car', component: CreateCarComponent},
+        {path: 'admin-users', component: AdminUsersComponent},
+        {path: 'cars', component: CarsComponent},
     ]),
   ],
   providers: [AuthService, AuthGuard, LoginComponent, AdminService],

@@ -3,7 +3,11 @@ table {
 }
 
 .mat-elevation-z8 {
-    width: 80%;
+    width: 60%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 40px;
+}
+
+td {
+    width: 5%;
 }
