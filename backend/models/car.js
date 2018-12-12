@@ -6,6 +6,7 @@ const carSchema = mongoose.Schema({
     model: String,
     power: String,
     seats: Number,
+    imgUrl: String,
 
 });
 

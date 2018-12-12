@@ -65,11 +65,20 @@ router.post('/create-car', (req,res,next) => {
        brand: req.body.brand,
        model: req.body.model,
        power: req.body.power,
-       seats: req.body.seats
+       seats: req.body.seats,
+       imgUrl: req.body.imgUrl,
    });
    car.save().then(response => {
         res.status(201).json({message: 'Car Inserted'});
     }).catch(error => {console.log(error)});
+});
+
+router.get('/cars', (req,res,next) => {
+    Car.find().then(cars => {
+        res.status(201).json(cars);
+    }).catch(error => {
+        console.log(error);
+    });
 });
 
 

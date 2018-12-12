@@ -20,7 +20,7 @@ export class CreateCarComponent implements OnInit {
 
   onCreate(form: NgForm) {
     const filename = this.selectedFile.name;
-    this.adminservice.createCar(form.value.brand, form.value.model, form.value.power, form.value.seats).subscribe(res => console.log(res));
+    this.adminservice.createCar(form.value.brand, form.value.model, form.value.power, form.value.seats, filename).subscribe(res => console.log(res));
     form.resetForm();
   }
 

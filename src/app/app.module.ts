@@ -5,7 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import {
     MatButtonModule,
-    MatCardModule, MatFormFieldModule,
+    MatCardModule, MatDatepickerModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
     MatListModule, MatPaginatorModule,
     MatRadioModule,
@@ -24,6 +24,7 @@ import { CreateCarComponent } from './create-car/create-car.component';
 import {AdminService} from './auth/admin/admin.service';
 import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.component';
 import { CarsComponent } from './cars/cars.component';
+import {CarsService} from './cars/cars.service';
 
 
 
@@ -58,6 +59,7 @@ import { CarsComponent } from './cars/cars.component';
       MatInputModule,
       MatFormFieldModule,
       HttpClientModule,
+      MatDatepickerModule,
       RouterModule.forRoot([
         {path: 'login', component: LoginComponent},
         {path: 'register', component: SignupComponent},
@@ -67,7 +69,7 @@ import { CarsComponent } from './cars/cars.component';
         {path: 'cars', component: CarsComponent},
     ]),
   ],
-  providers: [AuthService, AuthGuard, LoginComponent, AdminService],
+  providers: [AuthService, AuthGuard, LoginComponent, AdminService, CarsService],
   bootstrap: [AppComponent]
 })
 

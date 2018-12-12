@@ -3,4 +3,5 @@ export interface Car {
     model: string;
     power: string;
     seats: number;
+    imgUrl: string;
 }

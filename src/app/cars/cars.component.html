@@ -1,28 +1,29 @@
 <div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        Featured
+<ng-container *ngFor="let cars of car; let i =index">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+         {{cars?.brand}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{cars?.model}}</h5>
+          <p class="card-text"><img  class="card-img-top" src="{{path}}{{cars?.imgUrl}}" style="max-height: 200px; width: 100%;"></p>
+            <p>Power: {{cars?.power}}</p>
+            <p>Seats: {{cars?.seats}}</p>
+        </div>
+          <div class="footer">
+              <button class="btn btn-outline-success btn-block">Rent</button>
+          </div>
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        Featured
+  <div *ngIf="(i+1) % 2 === 0" class="w-100 "></div>
+</ng-container>
+
+
       </div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  </div>
+
+
+
+
 
 
