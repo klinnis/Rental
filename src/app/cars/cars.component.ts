@@ -14,7 +14,6 @@ export class CarsComponent implements OnInit {
   path: any;
 
 
-
   constructor(private carservice: CarsService) { }
 
   ngOnInit() {

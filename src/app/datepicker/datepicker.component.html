@@ -1,0 +1,10 @@
+<form (submit)="onSearch(dateForm)" #dateForm="ngForm">
+<input type="text"
+           placeholder="Choose your Date"
+           class="form-control"
+           bsDaterangepicker
+           ngModel
+           name="dateInput"
+           [bsConfig]="{ rangeInputFormat: 'DD-MM-YYYY', containerClass: 'theme-dark-blue'  }">
+    <button type="submit">Submit</button>
+</form>

@@ -7,7 +7,7 @@ import {
     MatButtonModule,
     MatCardModule, MatDatepickerModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
-    MatListModule, MatPaginatorModule,
+    MatListModule, MatNativeDateModule, MatPaginatorModule,
     MatRadioModule,
     MatSidenavModule, MatTableModule,
     MatToolbarModule
@@ -25,6 +25,10 @@ import {AdminService} from './auth/admin/admin.service';
 import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.component';
 import { CarsComponent } from './cars/cars.component';
 import {CarsService} from './cars/cars.service';
+import {DatePickerComponent} from './datepicker/datepicker.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
 
 
 
@@ -39,9 +43,11 @@ import {CarsService} from './cars/cars.service';
     CreateCarComponent,
     AdminUsersComponent,
     CarsComponent,
+    DatePickerComponent,
   ],
   imports: [
       BrowserModule,
+      BsDatepickerModule.forRoot(),
       MatSidenavModule,
       MatRadioModule,
       FormsModule,
@@ -60,6 +66,7 @@ import {CarsService} from './cars/cars.service';
       MatFormFieldModule,
       HttpClientModule,
       MatDatepickerModule,
+      MatNativeDateModule,
       RouterModule.forRoot([
         {path: 'login', component: LoginComponent},
         {path: 'register', component: SignupComponent},
