@@ -1,9 +1,8 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 
 
 const carSchema = mongoose.Schema({
-
     brand: String,
     model: String,
     power: String,
@@ -11,5 +10,6 @@ const carSchema = mongoose.Schema({
     imgUrl: String,
 
 });
+
 
 module.exports = mongoose.model('Car', carSchema);

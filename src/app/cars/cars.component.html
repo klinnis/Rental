@@ -3,7 +3,7 @@
 <app-date-picker></app-date-picker>
     </div>
 </div>
-
+<h1>Please give the Dates you want to Rent</h1>
 <div class="row">
 <ng-container *ngFor="let cars of car; let i =index">
     <div class="col-md-5">
@@ -18,7 +18,7 @@
             <p>Seats: {{cars?.seats}}</p>
         </div>
           <div class="footer">
-              <button class="btn btn-outline-success btn-block">Rent</button>
+              <button (click)="onRent(cars)" class="btn btn-outline-success btn-block">Rent</button>
           </div>
       </div>
       </div>
