@@ -76,35 +76,19 @@ router.post('/create-car', (req,res,next) => {
 
 router.post('/cars', (req,res,next) => {
 
-  Reservation.find({}).and([{from: {$gt: req.body.from}},{from: {$gt: req.body.until}}])
-      .then(user =>{
-     if(user[0] !== undefined) {
-         return res.json(user);
-     } else if(user[0] === undefined) {
-      Reservation.find({}).and([{until: {$lt: req.body.from}},{until: {$lt: req.body.until}}]).then(user1 => {
-          if(user1[0] !== undefined) {
-              return res.json(user1);
-          } else {
-              return res.json([]);
-          }
-      }).catch(error => console.log(error));
-     }
-  }).catch(error => {console.log(error)});
+    Reservation.find().or([{$and: [{from: {$lte: req.body.from}}, {until: {$gte: req.body.from}}]},
+        {$and: [{from: {$lte: req.body.until}}, {until: {$gte: req.body.until}}]},
+        {$and: [{from: {$gt: req.body.from}}, {until: {$lt: req.body.until}}]}])
+        .then(user => {
+            res.status(200).json(user);
+        }).catch(error => {console.log(error)});
+
 
 });
 
 router.post('/rent', (req,res,next) => {
 
-   const reserve = new Reservation({
-       car_id: req.body.id,
-       from: req.body.from,
-       until: req.body.until
-   });
-   reserve.save().then(car => {
-       res.status(201).json({message: 'Rented'});
-   }).catch(error => {
-       console.log(error);
-   })
+
 
 });
 
