@@ -79,8 +79,18 @@ router.post('/cars', (req,res,next) => {
     Reservation.find().or([{$and: [{from: {$lte: req.body.from}}, {until: {$gte: req.body.from}}]},
         {$and: [{from: {$lte: req.body.until}}, {until: {$gte: req.body.until}}]},
         {$and: [{from: {$gt: req.body.from}}, {until: {$lt: req.body.until}}]}])
-        .then(user => {
-            res.status(200).json(user);
+        .then(cars => {
+
+            if(cars[0] === undefined) {
+                Car.find().then(car => {
+                    res.status(200).json(car);
+                }).catch(error => {console.log(error)});
+            } else {
+                Car.find({_id: {$ne: cars[0].car_id}}).then(car3 => {
+                    res.status(201).json(car3);
+                } ).catch(error => {console.log(error)});
+            }
+
         }).catch(error => {console.log(error)});
 
 
