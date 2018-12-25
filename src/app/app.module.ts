@@ -27,6 +27,7 @@ import { CarsComponent } from './cars/cars.component';
 import {CarsService} from './cars/cars.service';
 import {DatePickerComponent} from './datepicker/datepicker.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ManagementComponent } from './management/management.component';
 
 
 
@@ -44,6 +45,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AdminUsersComponent,
     CarsComponent,
     DatePickerComponent,
+    ManagementComponent,
   ],
   imports: [
       BrowserModule,
@@ -74,6 +76,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
         {path: 'create-car', component: CreateCarComponent},
         {path: 'admin-users', component: AdminUsersComponent},
         {path: 'cars', component: CarsComponent},
+        {path: 'manage', component: ManagementComponent},
     ]),
   ],
   providers: [AuthService, AuthGuard, LoginComponent, AdminService, CarsService],

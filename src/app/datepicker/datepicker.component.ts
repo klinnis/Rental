@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import * as moment from 'moment';
 import {CarsService} from '../cars/cars.service';
@@ -13,11 +13,15 @@ import {takeUntil} from 'rxjs/operators';
     templateUrl: './datepicker.component.html',
     styleUrls: ['./datepicker.component.css'],
 })
-export class DatePickerComponent implements OnDestroy {
+export class DatePickerComponent implements OnDestroy, OnInit {
+
 
     private ngUnsubscribe: Subject<any> = new Subject();
 
     constructor(private carsService: CarsService) {}
+
+    ngOnInit() {
+    }
 
 
     onSearch(form: NgForm) {
@@ -27,7 +31,7 @@ export class DatePickerComponent implements OnDestroy {
         const until = moment(temp1).format('YYYYMMDD');
         localStorage.setItem('from', from);
         localStorage.setItem('until', until);
-         const apo = localStorage.getItem('from');
+        const apo = localStorage.getItem('from');
         const ews = localStorage.getItem('until');
         this.carsService.getCars(apo, ews).subscribe(res => this.carsService.selecteCars.next(res));
 

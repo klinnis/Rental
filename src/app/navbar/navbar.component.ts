@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
+import {CarsService} from '../cars/cars.service';
 
 
 @Component({
@@ -12,23 +13,31 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
    subscription: Subscription;
     auth: any;
-    isAdmin: any;
     admin: any;
+    temp = '1';
 
 
-  constructor(private authservice: AuthService) {
+  constructor(private authservice: AuthService, private carservice: CarsService) {
 
+      const data = this.authservice.getAuthData();
+      if (data) {
+          if (data.admin === this.temp) {
+              this.admin = 1;
+          } else {
+              this.admin = 0;
+          }
+      }
   }
 
-
-
   ngOnInit() {
-    this.subscription = this.authservice.authenticated.subscribe(res => {
+
+
+      this.subscription = this.authservice.authenticated.subscribe(res => {
         this.auth = res; });
 
-       this.authservice.admin.subscribe(res => this.admin = res);
-
-
+       this.authservice.admin.subscribe(res => {
+           this.admin = res;
+          });
   }
 
   onLogout() {
@@ -37,6 +46,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       localStorage.removeItem('token');
       localStorage.removeItem('admin');
       localStorage.removeItem('expiration');
+      localStorage.clear();
   }
 
   ngOnDestroy() {

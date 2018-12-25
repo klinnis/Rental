@@ -1,22 +1,37 @@
+<div style="overflow: hidden; height: 100vh;">
 <div class="row">
     <div class="col-xs-12 test">
 <app-date-picker></app-date-picker>
     </div>
 </div>
-<h1>Please give the Dates you want to Rent</h1>
-<div class="row">
+</div>
+<div class="row kk ">
 <ng-container *ngFor="let cars of car; let i =index">
     <div class="col-md-5">
       <div class="card">
+          <div class="row"></div>
         <div class="card-header">
-         {{cars?.brand}}
+            <div class="row">
+            <div class="col-md-3">
+                <p class="branding">{{cars?.brand}}</p>
+            </div>
+            <div class="col-md-3">
+                <p align="center" class="model">{{cars?.model}}
+                    <br> <img class="model1" align="center" src="{{path}}model.png"></p>
+            </div>
+                <div class="col-md-3">
+                    <p align="center" class="model">{{cars?.power}}cc
+                        <br> <img  class="image_power"  src="{{path}}power.png"></p>
+                </div>
+                <div class="col-md-3">
+                    <p align="center" class="model">{{cars?.seats}}
+                        <br>  <img  class="doors" align="center" src="{{path}}door.png"></p>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{{cars?.model}}</h5>
-          <p class="card-text"><img  class="card-img-top" src="{{path}}{{cars?.imgUrl}}" style="max-height: 200px; width: 100%;"></p>
-            <p>Power: {{cars?.power}}</p>
-            <p>Seats: {{cars?.seats}}</p>
-        </div>
+          <div>
+          <img class="temp" src="{{path}}{{cars?.imgUrl}}">
+          </div>
           <div class="footer">
               <button (click)="onRent(cars)" class="btn btn-outline-success btn-block">Rent</button>
           </div>
@@ -24,8 +39,6 @@
       </div>
   <div *ngIf="(i+1) % 2 === 0" class="w-100 "></div>
 </ng-container>
-
-
       </div>
 
 

@@ -46,7 +46,7 @@ this.authservice.loginUser(form.value.email, form.value.password).subscribe(res 
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expires * 1000);
         this.authservice.saveAuthData(token, expirationDate, admin);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/cars']);
 
     }
 });

@@ -80,7 +80,6 @@ router.post('/cars', (req,res,next) => {
         {$and: [{from: {$lte: req.body.until}}, {until: {$gte: req.body.until}}]},
         {$and: [{from: {$gt: req.body.from}}, {until: {$lt: req.body.until}}]}])
         .then(cars => {
-
             if(cars[0] === undefined) {
                 Car.find().then(car => {
                     res.status(200).json(car);
@@ -90,16 +89,18 @@ router.post('/cars', (req,res,next) => {
                     res.status(201).json(car3);
                 } ).catch(error => {console.log(error)});
             }
-
         }).catch(error => {console.log(error)});
-
-
 });
 
 router.post('/rent', (req,res,next) => {
-
-
-
+   const reserve = new Reservation({
+        car_id: req.body.id,
+        from: req.body.from,
+        until: req.body.until,
+    });
+   reserve.save().then( user => {
+       res.status(200).json({message: 'Rent OK'});
+   }).catch(error => {console.log(error)});
 });
 
 

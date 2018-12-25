@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CarsService} from './cars.service';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -14,16 +15,18 @@ export class CarsComponent implements OnInit {
     car: any;
     path: any;
     temp: any;
+    admin: any;
 
 
     constructor(private carservice: CarsService) {
     }
 
     ngOnInit() {
-        this.carservice.selecteCars.subscribe(res =>
-        {
+         this.admin = localStorage.getItem('admin');
+         this.carservice.isAdmin.next(this.admin);
+        this.carservice.selecteCars.subscribe(res => {
             this.car = res;
-            console.log(res);
+            this.path = this.carservice.path;
         });
     }
 
