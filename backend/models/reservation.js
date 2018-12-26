@@ -6,6 +6,8 @@ const reservationSchema = Schema({
     car_id: { type: Schema.Types.ObjectId, ref: 'Car' },
     from: Number,
     until: Number,
+    fromDate: Date,
+    untilDate: Date,
 });
 
 

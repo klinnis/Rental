@@ -97,10 +97,25 @@ router.post('/rent', (req,res,next) => {
         car_id: req.body.id,
         from: req.body.from,
         until: req.body.until,
+        fromDate: req.body.fromDate,
+        untilDate: req.body.untilDate
     });
    reserve.save().then( user => {
        res.status(200).json({message: 'Rent OK'});
    }).catch(error => {console.log(error)});
+});
+
+router.get('/rented-cars', (req,res,next) => {
+    Reservation.find().then(cars => {
+       res.status(200).json(cars);
+    }).catch(error => console.log(error));
+});
+
+router.post('/cancel-rent', (req,res,next) => {
+    Reservation.deleteOne({car_id: req.body.id, fromDate: req.body.from, untilDate: req.body.until})
+        .then(cancel => {
+            res.status(200).json(cancel);
+        }).catch(error => {console.log(error)});
 });
 
 

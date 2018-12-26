@@ -28,5 +28,14 @@ export class AdminService {
        return this.http.post('http://localhost:3000/api/admin/admin-user', dataid);
    }
 
+   rentedCars() {
+        return this.http.get('http://localhost:3000/api/admin/rented-cars');
+   }
+
+   cancelRent(id: any, from: any, until: any) {
+        const info = {id: id, from: from, until: until};
+        return this.http.post('http://localhost:3000/api/admin/cancel-rent', info);
+   }
+
 
 }

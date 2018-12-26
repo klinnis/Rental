@@ -35,8 +35,10 @@ export class CarsComponent implements OnInit {
    const until = localStorage.getItem('until');
    const from1 = moment(from).format('YYYYMMDD');
    const unti = moment(until).format('YYYYMMDD');
+   const fromDate = moment(from).format('YYYY-MM-DD');
+   const untilDate = moment(until).format('YYYY-MM-DD');
 
-   this.carservice.rentCar(cars._id, from1, unti).subscribe(res => {
+   this.carservice.rentCar(cars._id, from1, unti, fromDate, untilDate).subscribe(res => {
        console.log(res);
    });
 

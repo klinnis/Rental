@@ -1,9 +1,8 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTable, MatTableDataSource} from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTable} from '@angular/material';
 import {AdminService} from '../admin.service';
 import {Observable} from 'rxjs';
 import {DataSource} from '@angular/cdk/collections';
-import {ChangeDetectionPerfRecord} from '@angular/platform-browser/src/browser/tools/common_tools';
 
 export interface User {
     email: string;
