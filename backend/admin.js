@@ -36,16 +36,21 @@ router.get('/users', (req,res,next) => {
 
 router.post('/delete-user', (req, res, next) => {
 
-User.deleteOne({_id: req.body._id}).then(user => {
-    res.status(201).json(user);
+User.deleteOne({email: req.body.email}).then(user => {
+   User.find().then(users => {
+       res.status(200).json(users);
+   }).catch(error => console.log(error));
 }).catch(error => {
     console.log(error);
 });
 });
 
 router.post('/admin-user', (req,res,next) => {
-    User.findOneAndUpdate({ _id: req.body._id }, { $set: { isAdmin: 1 } }, { new: true }).then(user => {
-       res.status(201).json(user);
+console.log(req.body.email);
+    User.findOneAndUpdate({ email: req.body.email }, { $set: { isAdmin: 1 } }, { new: true }).then(user => {
+      User.find().then(users => {
+          res.status(200).json(users);
+      }).catch(error => console.log(error));
     }).catch(error => console.log(error));
 });
 

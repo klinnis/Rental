@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTable} from '@angular/material';
+import {MatPaginator, MatTable, MatTableDataSource} from '@angular/material';
 import {AdminService} from '../admin.service';
 import {Observable} from 'rxjs';
 import {DataSource} from '@angular/cdk/collections';
@@ -16,7 +16,8 @@ export interface User {
 export class AdminUsersComponent implements OnInit {
 
     displayedColumns = ['email', 'isAdmin', 'edit'];
-    dataSource = new UserDataSource(this.adminservice);
+    dataSource = new MatTableDataSource();
+    users: any;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild('table') table: MatTable<any>;
@@ -25,19 +26,52 @@ export class AdminUsersComponent implements OnInit {
     constructor(private adminservice: AdminService) {}
 
     ngOnInit() {
+        this.adminservice.getUsers().subscribe(res => {
+            const ELEMENT_DATA = [];
+            this.users = res;
+            this.users.forEach(user => {
+                const email = user.email;
+                const isAdmin = user.isAdmin;
 
+                ELEMENT_DATA.push({email: email, isAdmin: isAdmin});
+            });
+            this.dataSource.data = ELEMENT_DATA;
+            this.dataSource.paginator = this.paginator;
+        });
 
     }
 
     onDelete(element: any) {
-      this.adminservice.deleteUser(element._id).subscribe(res =>
-          this.dataSource = new UserDataSource(this.adminservice));
+      this.adminservice.deleteUser(element.email).subscribe(res => {
+
+          const ELEMENT_DATA = [];
+          this.users = res;
+          this.users.forEach(car => {
+              const email = car.email;
+              const isAdmin = car.isAdmin;
+              ELEMENT_DATA.push({email: email, isAdmin: isAdmin});
+          });
+          this.dataSource.data = ELEMENT_DATA;
+          this.dataSource.paginator = this.paginator;
+
+
+      });
 
     }
 
     onAdmin(element: any) {
-        this.adminservice.makeAdmin(element._id).subscribe(res =>
-            this.dataSource = new UserDataSource(this.adminservice));
+        this.adminservice.makeAdmin(element.email).subscribe(res => {
+                const ELEMENT_DATA = [];
+                this.users = res;
+                this.users.forEach(car => {
+                    const email = car.email;
+                    const isAdmin = car.isAdmin;
+                    ELEMENT_DATA.push({email: email, isAdmin: isAdmin});
+                });
+                this.dataSource.data = ELEMENT_DATA;
+                this.dataSource.paginator = this.paginator;
+            });
+
     }
 
 

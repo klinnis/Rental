@@ -21,13 +21,13 @@ export class AdminService {
         return this.http.get('http://localhost:3000/api/admin/users');
    }
 
-   deleteUser(id: string) {
-        const dataid = {_id: id};
+   deleteUser(email: string) {
+        const dataid = {email: email};
        return this.http.post('http://localhost:3000/api/admin/delete-user', dataid);
    }
 
-   makeAdmin(id: string) {
-       const dataid = {_id: id};
+   makeAdmin(email: string) {
+       const dataid = {email: email};
        return this.http.post('http://localhost:3000/api/admin/admin-user', dataid);
    }
 
