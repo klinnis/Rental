@@ -5,7 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import {
     MatButtonModule,
-    MatCardModule, MatDatepickerModule, MatFormFieldModule,
+    MatCardModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
     MatListModule, MatNativeDateModule, MatPaginatorModule,
     MatRadioModule,
@@ -23,7 +23,7 @@ import {AuthGuard} from './auth/auth.guard';
 import { CreateCarComponent } from './create-car/create-car.component';
 import {AdminService} from './auth/admin/admin.service';
 import {AdminUsersComponent} from './auth/admin/admin-users/admin-users.component';
-import { CarsComponent } from './cars/cars.component';
+import {CarsComponent, DialogOverviewExampleDialog} from './cars/cars.component';
 import {CarsService} from './cars/cars.service';
 import {DatePickerComponent} from './datepicker/datepicker.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -46,7 +46,8 @@ import { ManagementComponent } from './management/management.component';
     CarsComponent,
     DatePickerComponent,
     ManagementComponent,
-  ],
+    DialogOverviewExampleDialog,
+  ], entryComponents: [DialogOverviewExampleDialog],
   imports: [
       BrowserModule,
       BsDatepickerModule.forRoot(),
@@ -57,6 +58,7 @@ import { ManagementComponent } from './management/management.component';
       BrowserAnimationsModule,
       MatToolbarModule,
       MatIconModule,
+      MatDialogModule,
       MatListModule,
       MatTableModule,
       MatPaginatorModule,
@@ -69,6 +71,7 @@ import { ManagementComponent } from './management/management.component';
       HttpClientModule,
       MatDatepickerModule,
       MatNativeDateModule,
+      MatDialogModule,
       RouterModule.forRoot([
         {path: 'login', component: LoginComponent},
         {path: 'register', component: SignupComponent},

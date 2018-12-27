@@ -3,9 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
 import {Car} from '../../create-car/car.model';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class AdminService {
+
+    rented = new Subject();
 
     constructor(private http: HttpClient, private router: Router) {}
 
